@@ -1,4 +1,7 @@
 # Transmission
+[Transmission](https://transmissionbt.com/) BitTorrent client
+can be set up as a web interface that is accessible from any other
+machine in the same LAN.
 
 ## Install required packages:
 ```bash
