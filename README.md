@@ -2,13 +2,12 @@
 
 ## Install required packages:
 ```bash
-dnf install transmission-cli transmission-common
-transmission-daemon
+dnf install transmission-cli transmission-common transmission-daemon
 ```
 
 ## Edit configuration file
 The configuration file is located at:
-`/etc/var/lib/transmission/.config/transmission-daemon/settings.json`
+`/var/lib/transmission/.config/transmission-daemon/settings.json`
 
 Set download directory:
 ```json
