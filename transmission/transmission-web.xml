@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Copied from /usr/lib/firewalld/services/transmission-client.xml-->
+<service>
+  <short>Transmission Web</short>
+  <port protocol="tcp" port="51413"/>
+  <port protocol="udp" port="51413"/>
+  <port protocol="tcp" port="9091"/> <!--Required for web interface-->
+</service>
