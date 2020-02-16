@@ -25,7 +25,7 @@ Give access to any device on LAN:
 "rpc-whitelist": "127.0.0.1,192.168.50.*",
 ```
 
-Allow other users to access to *Transmission* files:
+Allow other users to access *Transmission* files:
 ```json
 "umask": 2,
 ```
