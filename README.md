@@ -1,3 +1,13 @@
+# Bluray
+Install *Makemkv* as a *snap* via *Snapcraft*. Instructions are available
+[here](https://snapcraft.io/install/makemkv/centos).
+
+User must bae added to *cdrom* group, as in the example below:
+```bash
+sudo usermod -a -G cdrom abe
+```
+Current shell session must be exited to apply changes.
+
 # Transmission
 [Transmission](https://transmissionbt.com/) BitTorrent client
 can be set up as a web interface that is accessible from any other
@@ -34,9 +44,8 @@ Allow other users to access *Transmission* files:
 ```
 
 ## Fix send/receive buffer issue
-In its default setup, accessing *Transmission Web Interface* will fail with a buffer error. To fix this, create
-the file `/etc/sysctl.d/99-transmission-daemon.conf` with two
-lines:
+In its default setup, accessing *Transmission Web Interface* will fail with a buffer error. To
+fix this, create the file `/etc/sysctl.d/99-transmission-daemon.conf` with two lines:
 ```bash
 net.core.rmem_max=4194304
 net.core.wmem_max=1048576
@@ -47,7 +56,8 @@ sysctl --load=/etc/sysctl.d/99-transmission-daemon.conf
 ```
 
 ## Configure firewall
-The ports used by *Transmission* are blocked by a firewall by default. These can be opened using *firewalld*.
+The ports used by *Transmission* are blocked by a firewall by default. These can be opened using
+*firewalld*.
 
 Create a new *firewalld service* by copying the default configuration for *Transmission*:
 ```bash
