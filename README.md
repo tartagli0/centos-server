@@ -1,4 +1,4 @@
-# Bluray
+# Blu-ray
 Install *Makemkv* as a *snap* via *Snapcraft*. Instructions are available
 [here](https://snapcraft.io/install/makemkv/centos).
 
