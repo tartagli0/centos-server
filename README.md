@@ -2,7 +2,7 @@
 Install *Makemkv* as a *snap* via *Snapcraft*. Instructions are available
 [here](https://snapcraft.io/install/makemkv/centos).
 
-User must bae added to *cdrom* group, as in the example below:
+User must be added to *cdrom* group, as in the example below:
 ```bash
 sudo usermod -a -G cdrom abe
 ```
