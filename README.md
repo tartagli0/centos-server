@@ -1,3 +1,11 @@
+# EPEL
+Extra Packages for Enterprise Linux (EPEL) contains many useful packages that are not available in the default CentOS repos.
+
+Install it via DNF:
+```bash
+dnf install epel-release
+```
+
 # Transmission
 [Transmission](https://transmissionbt.com/) BitTorrent client
 can be set up as a web interface that is accessible from any other
