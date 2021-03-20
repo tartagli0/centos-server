@@ -79,3 +79,89 @@ Load automatically at boot time:
 ```bash
 systemctl enable transmission-daemon
 ```
+
+# Samba
+This section describes the steps required to create a *samba* share that can
+be mapped as a network drive from any *Windows* PC on the same LAN.
+
+Install *samba* package:
+```bash
+dnf install samba
+```
+
+## Create new Samba user
+To access the *samba* share, a *Windows* client must log in with a user ID
+that exists in the *Fedora* system. In this case, the user name is
+*smbguest*.
+
+Create the new user with no *home* directory, as it is not
+needed:
+```bash
+useradd -M smbguest
+```
+
+Set password for new user:
+```bash
+passwd smbguest
+```
+
+Set a *samba* password for *smbguest*:
+```bash
+smbpasswd -a smbguest
+```
+
+## Set permissions for shared folders
+In order to allow *smbguest* read/write access to a shared folder
+(e.g., *myfolder*), the owner must be set to *smbguest* and permissions for
+*myfolder* should be set to *755*.
+
+```bash
+chown smbguest myfolder
+chmod 755 myfolder
+```
+
+Files within this folder that belong to another user cannot be deleted
+(assuming permissions are properly set) and will not be visible to *smbguest*
+if read access is not granted by owner. See 
+
+## Open firewall ports
+The required ports for *Samba* are blocked by default and must be opened via
+*firewalld*.
+
+*Samba* already exists as a
+pre-configured service in *firewalld*, which can be added to
+the default firewall zone:
+```bash
+firewall-cmd --permanent --zone=FedoraServer --add-service samba
+```
+
+Reload firewall confguration:
+```bash
+firewall-cmd --reload
+```
+
+## Edit configuration file
+
+The *smb.conf* file is used to configure *Samba* and can contain countless
+options. In Fedora systems, this file is located at `/etc/samba/smb.conf`.
+
+The configuration below is all that is needed for a *Samba* server that can
+only be accessed from a LAN machine, requires a username and password, and
+hides files that a user cannot access.
+
+```
+[global]
+        workgroup = WORKGROUP
+        server string = Samba Server Version %v
+        interfaces = lo eth0 192.168.50.204/24
+        hosts allow = 127. 192.168.50.
+        logging = systemd
+        security = user
+        passdb backend = tdbsam
+
+[Shared]
+        comment = Shared Storage
+        path = /data
+        writeable = yes
+        hide unreadable = yes
+```
