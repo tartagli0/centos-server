@@ -165,3 +165,14 @@ hides files that a user cannot access.
         writeable = yes
         hide unreadable = yes
 ```
+
+# Laptop Lid
+By default, CentOS will hibernate or sleep when the laptop lid is closed. To prevent this behavior, open the file `/etc/systemd/logind.conf` and add, un-comment, or modify the line:
+```bash
+HandleLidSwitch=ignore
+```
+Restart the service with the command:
+```bash
+systemctl restart systemd-logind.service
+```
+The laptop lid can now be closed without interrupting the server.
