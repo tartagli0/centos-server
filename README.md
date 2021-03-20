@@ -16,6 +16,13 @@ machine in the same LAN.
 dnf install transmission-cli transmission-common transmission-daemon
 ```
 
+## Generate configuration files
+Start and stop the *transmission daemon* in order to generate the default configuration files:
+```bash
+systemctl start transmission-daemon
+systemctl stop transmission-daemon
+```
+
 ## Edit configuration file
 The configuration file is located at:
 `/var/lib/transmission/.config/transmission-daemon/settings.json`
@@ -41,18 +48,6 @@ Allow other users to access *Transmission* files:
 "umask": 2,
 ```
 
-## Fix send/receive buffer issue
-In its default setup, accessing *Transmission Web Interface* will fail with a buffer error. To
-fix this, create the file `/etc/sysctl.d/99-transmission-daemon.conf` with two lines:
-```bash
-net.core.rmem_max=4194304
-net.core.wmem_max=1048576
-```
-Load new *systemctl* configuration file:
-```bash
-sysctl --load=/etc/sysctl.d/99-transmission-daemon.conf
-```
-
 ## Configure firewall
 The ports used by *Transmission* are blocked by a firewall by default. These can be opened using
 *firewalld*.
@@ -67,7 +62,7 @@ Edit the new file by adding port 9091, which is used by *Transmission Web Interf
 <port protocol="tcp" port="9091"/>
 ```
 
-Edit the file `/etc/firewalld/zones/FedoraServer.xml` by adding
+Edit the file `/etc/firewalld/zones/public.xml` by adding
 the new service:
 ```xml
 <service name="transmission-web"/>
