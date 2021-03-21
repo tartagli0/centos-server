@@ -143,6 +143,12 @@ Reload firewall confguration:
 firewall-cmd --reload
 ```
 
+## Configure SELinux
+Each directory shared via *Samba* must be given a SELinux context. To do so for the directory `/data`, run the command:
+```bash
+chcon -R -t samba_share_t /data
+```
+
 ## Edit configuration file
 
 The *smb.conf* file is used to configure *Samba* and can contain countless
@@ -165,8 +171,15 @@ hides files that a user cannot access.
 [Shared]
         comment = Shared Storage
         path = /data
+        browseable = yes
         writeable = yes
         hide unreadable = yes
+```
+
+## Restart services
+Restart *Samba* services to apply configuration:
+```bash
+systemctl restart smb nmb
 ```
 
 # Laptop Lid
