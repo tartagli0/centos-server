@@ -48,6 +48,17 @@ Allow other users to access *Transmission* files:
 "umask": 2,
 ```
 
+## Allow access to torrent folder
+The *Transmission* web interfece requires write permissions to the `/data/torrents` folder.
+The optimal way to accomplish this is to give ownership of the folder to the user *transmission*,
+created automatically at installation.
+
+Run the following command to assign ownership and permissions for the *torrent* folder:
+```bash
+chown transmission:transmission /data/torrents
+chmod 0755 /data/torrents
+```
+
 ## Configure firewall
 The ports used by *Transmission* are blocked by a firewall by default. These can be opened using
 *firewalld*.
