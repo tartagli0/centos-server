@@ -1,3 +1,8 @@
+# Background
+The configuration detailed in this repo is what I use on an old laptop that was converted into
+a *CentOS* server. I currently use *CentOS Stream 8*, which provides stability but also uses a
+*rolling release* model.
+
 # EPEL
 Extra Packages for Enterprise Linux (EPEL) contains many useful packages that are not available in the default CentOS repos.
 
