@@ -67,16 +67,19 @@ Create a new *firewalld service* by copying the default configuration for *Trans
 ```bash
 cp /usr/lib/firewalld/services/transmission-client.xml /etc/firewalld/services/transmission-web.xml
 ```
-
 Edit the new file by adding port 9091, which is used by *Transmission Web Interface*:
 ```xml
 <port protocol="tcp" port="9091"/>
 ```
 
-Edit the file `/etc/firewalld/zones/public.xml` by adding
-the new service:
-```xml
-<service name="transmission-web"/>
+Find the default *firewalld* zone:
+```bash
+firewall-cmd --get-default-zone
+```
+
+Add add the new *transmission-web* service to the default zone (*FerdoraServer* in this example):
+```bash
+firewall-cmd --zone=FedoraServer --add-service=transmission-web --permanent
 ```
 
 Reload *firewalld* to apply the new settings:
