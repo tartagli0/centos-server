@@ -152,7 +152,7 @@ The required ports for *Samba* are blocked by default and must be opened via
 
 *Samba* already exists as a
 pre-configured service in *firewalld*, which can be added to
-the default firewall zone:
+the *home* firewall zone:
 ```bash
 firewall-cmd --permanent --add-service={samba,samba-client,samba-dc} --zone=home
 ```
