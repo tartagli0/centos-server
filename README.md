@@ -154,7 +154,7 @@ The required ports for *Samba* are blocked by default and must be opened via
 pre-configured service in *firewalld*, which can be added to
 the default firewall zone:
 ```bash
-firewall-cmd --permanent --zone=FedoraServer --add-service samba
+firewall-cmd --permanent --add-service={samba,samba-client,samba-dc} --zone=home
 ```
 
 Reload firewall confguration:
